@@ -14,31 +14,21 @@ $query = array(
 // Create New Smart Collection
 
 $payload = array (            
-                     "smart_collection" => array(
-                          "title" => "Remedies Containing ingredient",
-                          "handle" => "herbs-supplements",
-						  
-						  
-						     "rules" =>	array (array(
-                             
-							  "column" => "title",
-                              "relation" => "equals",
-                              "condition" => "test" 
-							 
-							 )
-							 )
-							 
-							 
-							  
-							                
-                         
-                     )               
-                   );
-	
-
+	"smart_collection" => array(
+		"title"  => "Remedies Containing ingredient",
+		"handle" => "herbs-supplements",
+		"rules"  =>	array(
+			array(
+				"column" => "title",
+				"relation" => "equals",
+				"condition" => "test" 
+			)
+		)
+	)               
+);
 
 // Run API call to modify the product
-$new_collection = shopify_call($token, $shop,  "/admin/api/2019-07/smart_collections.json",  $payload, 'POST');
+$new_collection = shopify_call($token, $shop,  "/admin/api/2019-07/smart_collections.json", json_encode($payload), 'POST');
 
 // Storage response
 $new_collection_response = $new_collection['response'];
